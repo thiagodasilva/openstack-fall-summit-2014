@@ -1,1 +1,1 @@
-Presentation for OpenStack Summit Spring 2014
+Presentation for OpenStack Summit Fall 2014

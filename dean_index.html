@@ -54,47 +54,75 @@
                     <h3>Red Hat</h3>
                 </section>
 
-                <section>
-                    <h2>Swift overview</h2>
-                    <h3>Storage policies, diskfile API</h3>
-                    <h3>Realize the benefits of Swift on a Scale-out File System</h3>
+                 <section>
+                    <h3>Use Case: Analytics</h3>
+                       <table align=center>
+                        <tr>
+                            <td>
+                                <ul>
+<FONT SIZE=4 FACE=“Ariel”>
+
+                                    <li><b>Problem – Separate storage systems for object ingest/distribution and analysis</b></li>
+</FONT>
+<FONT SIZE=3 FACE=“Ariel”>
+                                    <li>Data duplication and maintenance overhead</li>
+                                    <li>Data consistency</li>
+                                    <li>Lack real-time analysis</li>
+</FONT>
+<FONT SIZE=4 FACE=“Ariel”>
+                                    <li><b>Solution – Swift with Scale-out File System</b></li>
+</FONT>
+
+<FONT SIZE=3 FACE=“Ariel”>
+                                    <li>Decreased time to results</li>
+                                    <li>Run MapReduce directly on objects through native File API</li>
+                                    <li>No waiting for data transfer between storage systems</li>
+                                    <li>Immediately share results</li>
+</FONT>
+
+                                </ul>
+                           </td>
+                           <td>        
+                               <img src="images/swifthpc.png"/>
+                           </td>
+                        </tr>
+                    </table>
                 </section>
                 <section>
-                    <h2>General overview of Swift on a Scale-out File System</h2>
-                    <ul>
-                    <li>File system data protection</li>
-		    <ul>
-                    <li>Tape Integration</li>
-                    <li>Snapshots</li>
-                    <li>Encryption</li>
-		    </ul>
-                    <li>Leverage scale out properties and features of file system</li>
-                    <ul>
-                    <li>Automatic Tiering of data between storage pools</li>
-                    <li>Compression and Deduplication</li>
-                    </ul>
-                    <li>require POSIX support</li>
-		    </ul>
-                </section>
-                <section>
-                    <h2>Swiftonfile as a Storage Policy</h2>
-                    <img src="images/sp_sof.png" />
-                </section>
-                <section>
-                    <h2>Use Case:</h2>
-                    <h2>Multiple protocol access</h2>
-                    <img src="images/swift_usecase.png" />
-                </section>
-                <section>
-                    <h2>Use Case:</h2>
-                    <h2>scientific data being produced by legacy applications
-                    	over file interface and being served as objects over
-                    	swift interface
-                    </h2>
-                </section>
-                <section>
-                    <h2>Use Case:</h2>
-                    <h2>analysis of objects via native hdfs plugin</h2>
+                    <h3>Use Case: Scientific Collaboration</h3>
+                       <table>
+                        <tr>
+                            <td>
+                                <ul>
+<FONT SIZE=4 FACE=“Ariel”>
+                                    <li><b>Problem – Secure and scalable sharing of scientific data</b></li>
+</FONT>
+
+<FONT SIZE=4 FACE=“Ariel”>
+                                    <li>Native object stores not suited to scientific data analysis</li>
+                                    <li>Scale-out file systems lack global sharing capabilities</li>
+                                    <li>Replicating large scientific datasets problematic</li>
+</FONT>
+
+<FONT SIZE=4 FACE=“Ariel”>
+                                    <li><b>Solution – Swift with Scale-out File System</b></li>
+</FONT>
+
+<FONT SIZE=4 FACE=“Ariel”>
+                                    <li>High-Performance</li>
+                                    <li>Scientific applications use file system directly to achieve required bandwidth</li>
+                                    <li>Immediately share results through Swift</li>
+                                    <li>Secure sharing with Keystone</li>
+</FONT>
+
+                                </ul>
+                           </td>
+                           <td>        
+                               <img src="images/swifthdfs.png"/>
+                           </td>
+                        </tr>
+                    </table>
+
                 </section>
                 <section>
                     <h2>Summary</h2>

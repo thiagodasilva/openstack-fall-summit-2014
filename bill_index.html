@@ -55,8 +55,28 @@
                 </section>
 
                 <section>
-                    <h2>Overview of Swift on a Scale-out File System</h2>
+                    <h2>Deploying Swift on a Scale-Out File System</h2>
                     <img src="images/scale_out_filesystem.png" />
+                    <br>
+                    Benefits:
+                     <ul>
+                     <li>Add swift to an existing scale-out file system without having to purchase dedicated storage hardware</li>
+                     <li>A single management plane for both file and object storage</li>
+                     <li>Leverage features of the Scale-Out File System, for example:</li>
+                         <ul>
+                         <li>Snapshots</li>
+                         <li>Encryption</li>
+                         <li>Automatic tiering between classes of storage</li>
+                         <li>Compression and deduplication</li>
+                         <li>Tape integration</li>
+                         </ul>
+                     <li>Possible Performance Optimizations</li>
+                         <ul>
+                         <li>Use filesystem replication rather than native Swift replication</li>
+                         <li>Add or remove nodes without requiring Swift rebalance of data</li>
+                         <li>Optimize data movement by reducing http copies</li>
+                         </ul>
+                     </ul>
 		
                 </section>
                 <section>

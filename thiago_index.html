@@ -129,14 +129,14 @@
                 </section>
                 <section>
                     <h2 class="title">Swift-on-File</h2>
-                    <p><i>A Swift DiskFile implementation which allows objects created using the Swift API to be accessed as files on a POSIX filesystem</i></p>
-                    <p>also allows for files created on file to be access as objects</p>
-                    <p>extending the capabiliti</p>
-                    <p>improve integration of cluster fs to allow multi-protocol</p>
-                    <p>main goal of this project</p>
+                    <p><i>A Swift DiskFile implementation used to stored objects 
+                    on scale-out filesystem (e.g., GlusterFS, GPFS).</i></p>
                     <ul>
-                    	<li class="fragment">Use a scale-out filesystem to store objects (e.g., GlusterFS, GPFS)</li>
+                        <li class="fragment">Allows objects created using Swift
+                                             API to be accessed as files and
+                                             vice-versa</li>
                     	<li class="fragment">Map URL to file path</li>
+                        <li class="fragment">Deployed as a Storage Policy</li>
                     </ul>
                 </section>
                 <section>
@@ -144,11 +144,11 @@
                     <p>http://swift.example.com/v1/acct/cont/obj</p>
                     <p>/mnt/swiftonfile/acct/cont/obj</p>
                 </section>                
-                <section>
+                <!--<section>
                     <h2 class="title">Use Case: Multiple protocol access</h2>
                     <img src="images/swift_usecase.png" />
                     <p>edit</p>
-                </section>
+                </section>-->
                 <section>
                     <h2 class="title">Use Case: Analytics</h2>
                     <section data-transition="none">
@@ -214,9 +214,16 @@
                     </section>
                 </section>
                 <section>
-                    <h2 class="title">Summary</h2>
-                    <p>final summary of what you can do with swiftonfile</p>
-                    <p>
+                    <h2 class="title">To summarize, Swift-on-File enables you to:</h2>
+                    <ul>
+                        <li class="fragment">Quickly deploy object storage on a scale-out filesystem</li>
+                        <li class="fragment">Share files from legacy applications as objects</li>
+                        <li class="fragment">Extend an existing Swift cluster</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 class="title">What's next?</h2>
+                    <p>Come hear more about it during the design sessions on TBD</p>
                 </section>
                 <section>
                     <h2 class="title">Come join us...</h2>

@@ -11,9 +11,11 @@
         <meta name="author" content="Thiago da Silva">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="apple-mobile-web-app-status-bar-style" 
+              content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width,
+              initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
@@ -26,6 +28,11 @@
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
+        <style>
+            h2.title {
+                color: #2980b9;
+            }
+        </style>
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -43,7 +50,7 @@
 
                 <section>
                     <h2>Dean Hildebrand</h2>
-                    <h3>IBM Almaden Research Center</h3>
+                    <h3>IBM Research</h3>
                     <br />
                     <p />
                     <h2>William Owen</h2>
@@ -53,40 +60,189 @@
                     <h2>Thiago da Silva</h2>
                     <h3>Red Hat</h3>
                 </section>
+                <section>
+                    <h2 class="title">Openstack Swift</h2>
+                    <p><i>A highly available, distributed, 
+                    eventually consistent object/blob store. 
+                    Organizations can use Swift to store lots of data 
+                    efficiently, safely, and cheaply.</i></p>
+                    <img src="images/object_storage_use.png">
+                </section>
+                <section>
+                    <h2 class="title">Swift Architecture</h2>
+                    <img src="images/swift_arch.png">
+                </section>
+                <section>
+                    <h2 class="title">Swift 2.0 - Storage Policies</h2>
+                    <h3>Ability to choose how and 
+                        <b style="color:#e74c3c">where</b> to store objects</h3>
+                    <ul>
+                    	<li>How: 2x or 3x replication, EC</li>
+                    	<li>Where: HDs, SSDs or a Scale-out File System</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 class="title">How is this accomplished?</h2>
+                    <img src="http://www.wpclipart.com/cartoon/assorted/xtra_cartoons/telling_a_secret.png">
+                    <p style="font-size: small"><i>"multiple rings"</i></p>
+                </section>
+                <section>
+                    <h2 class="title">Before...</h2>
+                    <img src="images/swift_before.png">
+                </section>
+                <section>
+                    <h2 class="title">After...</h2>
+                    <img src="images/swift_after.png">
+                </section>
+                <section>
+                    <h2 class="title">Benefits of Swift on a Scale-out filesystem</h2>
+                    <section data-transition="none">
+                        <div style="width: 45%; float: left;">
+                        <h3>Benefits</h3>
+                        <ul>
+                            <li>Add swift to an existing scale-out file system </li>
+                            <li>Without having to purchase dedicated storage for object</li>
+                            <li>A single management plane for both file and object storage</li>
+                        </ul>
+                        </div>
+                        <div style="float: right;">
+                        <div>
+                            <img style="background:none; border:none; box-shadow:none;" src="images/scale_out_filesystem_mod2.png">
+                        </div>
+                    </section>
+                    <section data-transition="none">
+                        <div style="width: 40%; float: left;">
+                        <h3>Leverage File System Features</h3>
+                        <ul>
+                            <li>Snapshots</li>
+                            <li>Encryption, compression, deduplication</li>
+                            <li>Automatic tiering between classes of storage</li>
+                            <li>Tape Integration</li>
+                        </ul>
+                        </div>
+                        <div style="float: right;">
+                        <div>
+                            <img style="background:none; border:none; box-shadow:none;" src="images/scale_out_filesystem_mod2.png">
+                        </div>
+                    </section>
+                </section>
+                <section>
+                    <h2 class="title">problem?</h2>
+                    <p>No easy way to access object data from the file system</p>
+                   <h2 class="title">Example</h2>
+                    <p>This object:  <br>
+                    http://swift.example.com/v1/acct/cont/obj</p>
+                    <p>Is located here:  <br>
+                    /mnt/swift/z1device7/objects/63773/ba2/f91d1e7550cd32822a17b00fa86d9ba2/1414045361.93852.data</p>
 
-                <section>
-                    <h2>Swift overview</h2>
-                    <h3>Storage policies, diskfile API</h3>
-                    <h3>Realize the benefits of Swift on a Scale-out File System</h3>
                 </section>
                 <section>
-                    <h2>General overview of Swift on a Scale-out File System</h2>
-                    <h3>use file system data protection</h3>
-                    <h3>leverage scale out properties and features of file system</h3>
-                    <h3>require POSIX support</h3>
+                    <h2 class="title">Swift-on-File</h2>
+                    <p><i>A Swift DiskFile implementation used to stored objects 
+                    on scale-out filesystem (e.g., GlusterFS, GPFS).</i></p>
+                    <ul>
+                        <li class="fragment">Allows objects created using Swift
+                                             API to be accessed as files and
+                                             vice-versa</li>
+                    	<li class="fragment">Map URL to file path</li>
+                        <li class="fragment">Deployed as a Storage Policy</li>
+                    </ul>
                 </section>
                 <section>
-                    <h2>Swiftonfile as a Storage Policy</h2>
-                    <img src="images/sp_sof.png" />
-                </section>
+                    <h2 class="title">Example</h2>
+                    <p>Now, this object: <br>
+                    http://swift.example.com/v1/acct/cont/obj</p>
+                    <p>Is located here: <br>
+                    /mnt/swiftonfile/acct/cont/obj</p>
+                </section>                
                 <section>
-                    <h2>Use Case:</h2>
-                    <h2>Multiple protocol access</h2>
+                    <h2 class="title">Use Case: Multiple protocol access</h2>
                     <img src="images/swift_usecase.png" />
                 </section>
                 <section>
-                    <h2>Use Case:</h2>
-                    <h2>scientific data being produced by legacy applications
-                    	over file interface and being served as objects over
-                    	swift interface
-                    </h2>
+                    <h2 class="title">Use Case: Analytics</h2>
+                    <section data-transition="none">
+                        <div style="width: 45%; float: left;">
+                        <h3>Problem: Separate Storage systems for object
+                            ingest/distribution and analysis</h3>
+                        <ul>
+                            <li>Data duplication and maintenance overhead</li>
+                            <li>Data Consistency</li>
+                            <li>Lack real-time analysis</li>
+                        </ul>
+                        </div>
+                        <div style="float: right;">
+                        <div>
+                            <img style="background:none; border:none; box-shadow:none;" src="images/swifthdfs1.png">
+                        </div>
+                    </section>
+                    <section data-transition="none">
+                        <div style="width: 40%; float: left;">
+                        <h3>Solution: Swift with Scale-out filesystem</h3>
+                        <ul>
+                            <li>Decreased time to results</li>
+                            <li>Run MapReduce directly on objects through native File API</li>
+                            <li>No waiting for data transfer between storage systems</li>
+                        </ul>
+                        </div>
+                        <div style="float: right;">
+                        <div>
+                            <img style="background:none; border:none; box-shadow:none;" src="images/swifthdfs1.png">
+                        </div>
+                    </section>
                 </section>
                 <section>
-                    <h2>Use Case:</h2>
-                    <h2>analysis of objects via native hdfs plugin</h2>
+                    <h2 class="title">Use Case: Scientific Collaboration</h2>
+                    <section data-transition="none">
+                        <div style="width: 45%; float: left;">
+                        <h3>Problem: Secure and scalable sharing of scientific data</h3>
+                        <ul>
+                            <li>Native object stores not suited to scientific data analysis</li>
+                            <li>Scale-out file systems lack global sharing capabilities</li>
+                            <li>Replicating large scientific datasets problematic</li>
+                        </ul>
+                        </div>
+                        <div style="float: right;">
+                        <div>
+                            <img style="background:none; border:none; box-shadow:none;" src="images/swifthpc1.png">
+                        </div>
+                    </section>
+                    <section data-transition="none">
+                        <div style="width: 40%; float: left;">
+                        <h3>Solution: Swift with Scale-out filesystem</h3>
+                        <ul>
+                            <li>High-Performance</li>
+                            <li>Scientific applications use filesystem directly to achieve required bandwidth</li>
+                            <li>Immediately share results through Swift</li>
+                            <li>Secure sharing with Keystone</li>
+                        </ul>
+                        </div>
+                        <div style="float: right;">
+                        <div>
+                            <img style="background:none; border:none; box-shadow:none;" src="images/swifthpc1.png">
+                        </div>
+                    </section>
                 </section>
                 <section>
-                    <h2>Summary</h2>
+                    <h2 class="title">To summarize, Swift-on-File enables you to:</h2>
+                    <ul>
+                        <li class="fragment">Quickly deploy object storage on a scale-out filesystem</li>
+                        <li class="fragment">A single system that allows you to access your data as both files and objects</li>
+                        <li class="fragment">Extend an existing Swift cluster</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2 class="title">What's next?</h2>
+                    <p>Come hear more about it during the design sessions on TBD</p>
+                </section>
+                <section>
+                    <h2 class="title">Come join us...</h2>
+                    <p style="color:#27ae60">Github: <a href="https://github.com/stackforge/swiftonfile">
+                    	https://github.com/stackforge/swiftonfile</a>
+                    </p>
+                    <p style="color:#d35400">Launchpad: <a href="https://launchpad.net/swiftonfile">
+                    	https://launchpad.net/swiftonfile</a></p>
+                    <p style="color:#8e44ad">irc: <a href="#">#swiftonfile</a></p>
                 </section>
 
 			</div>
@@ -104,7 +260,7 @@
 				controls: true,
 				progress: true,
 				history: true,
-				center: true,
+				center: false,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
